@@ -61,7 +61,11 @@ end
   end
   
    def self.new_from_db(row)
-    new_student = self.new(row[0], row[1], row[2])
+    id = row[0]
+    name = row[1]
+    grade = row[2]
+    new_student = self.new(id, name, grade)
+    #new_student = self.new
     #new_student.id = row[0]
     #new_student.name =  row[1]
     #new_student.grade = row[2]
@@ -69,7 +73,7 @@ end
   end
   
   def update
-    sql = "UPDATE songs SET name = ?, grade = ? WHERE name = ?"
+    sql = "UPDATE students SET name = ?, grade = ? WHERE id = ?"
     DB[:conn].execute(sql, self.name, self.grade, self.id)
   end
 end
